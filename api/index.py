@@ -30,4 +30,5 @@ def predict(sl: float, sw: float, pl: float, pw: float):
         "class_name": class_names[pred]
     }
 
+# ✅ THIS LINE FIXES VERCEL
 handler = app
