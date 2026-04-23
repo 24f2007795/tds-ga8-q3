@@ -18,11 +18,13 @@ class_names = iris.target_names
 
 
 @app.get("/health")
+@app.get("/api/health")  # ✅ add this
 def health():
     return {"status": "ok"}
 
 
 @app.get("/predict")
+@app.get("/api/predict")  # ✅ add this
 def predict(sl: float, sw: float, pl: float, pw: float):
     pred = model.predict([[sl, sw, pl, pw]])[0]
     return {
@@ -30,5 +32,5 @@ def predict(sl: float, sw: float, pl: float, pw: float):
         "class_name": class_names[pred]
     }
 
-# ✅ THIS LINE FIXES VERCEL
+
 handler = app
