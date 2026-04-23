@@ -7,6 +7,7 @@ app = FastAPI()
 iris = load_iris()
 X, y = iris.data, iris.target
 
+# ✅ stable configuration (DO NOT CHANGE)
 model = DecisionTreeClassifier(
     criterion="entropy",
     max_depth=2,
@@ -18,13 +19,13 @@ class_names = iris.target_names
 
 
 @app.get("/health")
-@app.get("/api/health")  # ✅ add this
+@app.get("/api/health")
 def health():
     return {"status": "ok"}
 
 
 @app.get("/predict")
-@app.get("/api/predict")  # ✅ add this
+@app.get("/api/predict")
 def predict(sl: float, sw: float, pl: float, pw: float):
     pred = model.predict([[sl, sw, pl, pw]])[0]
     return {
@@ -33,4 +34,5 @@ def predict(sl: float, sw: float, pl: float, pw: float):
     }
 
 
+# required for Vercel
 handler = app
