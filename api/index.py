@@ -4,7 +4,6 @@ from sklearn.tree import DecisionTreeClassifier
 
 app = FastAPI()
 
-# Load dataset & train model at startup
 iris = load_iris()
 X, y = iris.data, iris.target
 
