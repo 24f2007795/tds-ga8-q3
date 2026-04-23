@@ -10,7 +10,7 @@ X, y = iris.data, iris.target
 # ✅ stable configuration (DO NOT CHANGE)
 model = DecisionTreeClassifier(
     criterion="entropy",
-    max_depth=2,
+    max_depth=5,
     random_state=42
 )
 model.fit(X, y)
