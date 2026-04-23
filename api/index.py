@@ -7,7 +7,7 @@ app = FastAPI()
 iris = load_iris()
 X, y = iris.data, iris.target
 
-model = DecisionTreeClassifier(random_state=42, max_depth=3)
+model = DecisionTreeClassifier(random_state=42, max_depth=5)
 model.fit(X, y)
 
 class_names = iris.target_names
