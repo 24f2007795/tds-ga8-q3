@@ -7,7 +7,11 @@ app = FastAPI()
 iris = load_iris()
 X, y = iris.data, iris.target
 
-model = DecisionTreeClassifier(random_state=42, max_depth=5)
+model = DecisionTreeClassifier(
+    criterion="entropy",
+    max_depth=2,
+    random_state=42
+)
 model.fit(X, y)
 
 class_names = iris.target_names
@@ -20,9 +24,10 @@ def health():
 
 @app.get("/predict")
 def predict(sl: float, sw: float, pl: float, pw: float):
-    sample = [[sl, sw, pl, pw]]
-    pred = model.predict(sample)[0]
+    pred = model.predict([[sl, sw, pl, pw]])[0]
     return {
         "prediction": int(pred),
         "class_name": class_names[pred]
     }
+
+handler = app
